@@ -1,3 +1,10 @@
+/**
+ * Main function that inserts images into Google Sheets and converts Excel files to Google Sheets if needed.
+ * @param {string} spreadsheetID - The ID of the spreadsheet containing the images' URLs or IDs.
+ * @param {string} sheetName - The name of the sheet where the images will be inserted.
+ * @param {number} columnWithFoto - The column containing the image URLs or IDs.
+ * @param {number} columnOutput - The column where the images will be inserted.
+ */
 function insertImagesAndConvertToGoogleSheet(spreadsheetID = 'Your_excel_id[_ID]', sheetName, columnWithFoto = 1, columnOutput = columnWithFoto) {
   const file = DriveApp.getFileById(spreadsheetID);
   const mimeType = file.getMimeType();
@@ -44,6 +51,11 @@ function insertImagesAndConvertToGoogleSheet(spreadsheetID = 'Your_excel_id[_ID]
   }
 }
 
+/**
+ * Finds the appropriate URL for the image based on the input value.
+ * @param {string} value - The input value that may contain the image URL or ID.
+ * @return {string} - The URL for the image.
+ */
 function findURL(value) {
   if (value === '') {
     return '';
@@ -68,6 +80,11 @@ function findURL(value) {
   }
 }
 
+/**
+ * Inserts an image into a specified cell using the image URL.
+ * @param {string} url - The URL of the image to insert.
+ * @param {Object} cell - The cell object where the image will be inserted.
+ */
 function insertImage(url, cell) {
   const image = SpreadsheetApp
     .newCellImage()
@@ -78,6 +95,11 @@ function insertImage(url, cell) {
   cell.setValue(image);
 }
 
+/**
+ * Converts an Excel file to Google Sheets and returns the new Google Sheets file's ID.
+ * @param {string} excelFileId - The ID of the Excel file to convert.
+ * @return {string} - The ID of the new Google Sheets file.
+ */
 function convertExcelToGoogleSheet(excelFileId = '1087uKPtyGTiEP-3YzssqvOtzR1q-l0v6') {
   const excelFile = DriveApp.getFileById(excelFileId);
   const googleSheet = convertToGoogleSheet(excelFile);
@@ -87,6 +109,11 @@ function convertExcelToGoogleSheet(excelFileId = '1087uKPtyGTiEP-3YzssqvOtzR1q-l
   return googleSheet.getId();
 }
 
+/**
+ * Helper function that converts an Excel file to Google Sheets and returns the new Google Sheets file.
+ * @param {Object} excelFile - The Excel file object to convert.
+ * @return {Object} - The new Google Sheets file object.
+ */
 function convertToGoogleSheet(excelFile) {
   const excelBlob = excelFile.getBlob();
   const parentFolder = excelFile.getParents().next();
