@@ -1,6 +1,6 @@
 # AppsScriptForAppSheet
 
-AppsScriptForAppSheet is a Google Apps Script repository that provides functionality to insert images from various sources into Google Sheets cells, making it easier for AppSheet users to manage images. It can also convert Excel files to Google Sheets and supports error handling with retries.
+AppsScriptForAppSheet is a Google Apps Script repository that provides functionality to insert images from various sources into Google Sheets cells, serving as a fix for improper image handling when generating Excel templates from AppSheet. This solution makes it easier for AppSheet users to manage images in their sheets. Additionally, it can convert Excel files to Google Sheets and supports error handling with retries, ensuring smooth operation.
 
 ## Functions
 
